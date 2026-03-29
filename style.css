@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=JetBrains+Mono:wght@300;500&family=Montserrat:wght@300;600;800&display=swap');
+
+:root {
+    --pink: #ff4d6d;
+    --dark-pink: #c9184a;
+    --yellow: #ffea00;
+    --glass: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #0f0c29;
+    background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Reloj Digital */
+.digital-clock {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--pink);
+    margin-top: 10px;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    animation: fadeIn 2s ease;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    margin: 10px 0;
+    text-shadow: 0 0 20px var(--pink);
+}
+
+#pika-trigger {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#pika-trigger:hover {
+    color: var(--yellow);
+    text-shadow: 0 0 20px var(--yellow);
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid var(--pink);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+}
+
+.video-wrapper {
+    width: 90%;
+    max-width: 500px;
+    border: 4px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Flores Amarillas */
+.garden {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.flower {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    animation: sway 3s infinite ease-in-out;
+}
+
+.petal {
+    position: absolute;
+    background: var(--yellow);
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 0 50%;
+    transform-origin: bottom right;
+}
+
+.petal:nth-child(2) { transform: rotate(90deg); }
+.petal:nth-child(3) { transform: rotate(180deg); }
+.petal:nth-child(4) { transform: rotate(270deg); }
+.petal:nth-child(5) { transform: rotate(360deg); }
+
+.leaf {
+    width: 20px;
+    height: 20px;
+    background: #4caf50;
+    border-radius: 0 50%;
+    position: absolute;
+    bottom: -20px;
+    left: 40px;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* Carta */
+.letter-box {
+    max-width: 800px;
+    width: 85%;
+    margin: 0 auto 50px;
+    padding: 40px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.text-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+.dancing-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--pink);
+}
+
+/* Botón */
+.btn-primary {
+    display: block;
+    margin: 0 auto 100px;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 50px;
+    background: var(--pink);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+}
+
+.btn-primary:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: white;
+    color: var(--pink);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    padding: 50px;
+    border-radius: 40px;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid var(--pink);
+    color: white;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--pink);
+}
+
+.heart-animation {
+    font-size: 4rem;
+    animation: beat 0.8s infinite alternate;
+}
+
+@keyframes beat {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pikachu Overlay */
+.pika-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    background: rgba(0,0,0,0.8);
+}
+
+.pika-hide { opacity: 0; pointer-events: none; }
+.pika-show { opacity: 1; pointer-events: auto; }
+
+.pika-card {
+    background: #ffeb3b;
+    padding: 40px;
+    border-radius: 30px;
+    border: 6px solid white;
+    text-align: center;
+    box-shadow: 0 0 50px #ffea00;
+}
+
+.pika-char { display: block; font-size: 1.8rem; color: #333; font-weight: 800; margin-bottom: 20px; }
+.pika-heart { font-size: 5rem; }

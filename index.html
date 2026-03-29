@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>365 Días - Jennyra & Waskar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="particles-container"></div>
+
+    <main class="main-content">
+        <header class="hero">
+            <div class="badge">PROYECTO: AMOR ETERNO v1.0</div>
+            <h1 class="title">Para mi <span id="pika-trigger">Pokemona</span></h1>
+            <div id="clock" class="digital-clock">Iniciando contador...</div>
+        </header>
+
+        <div class="video-wrapper">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FYVXc9MqyJs?autoplay=1&loop=1&playlist=FYVXc9MqyJs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <section class="garden">
+            <div class="flower">
+                <div class="leaf"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
+            <p style="color: #ffea00; margin-top: 40px; font-weight: 600;">Flores amarillas para mi niña.</p>
+        </section>
+
+        <section class="letter-box">
+            <h2 class="dancing-text">365 días del mejor código...</h2>
+            <div id="typing-text" class="text-content"></div>
+        </section>
+
+        <button class="btn-primary" onclick="openModal()">
+            <span>❤️</span> DESBLOQUEAR NUESTRO FUTURO <span>❤️</span>
+        </button>
+    </main>
+
+    <div id="custom-modal" class="modal">
+        <div class="modal-glass">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 class="dancing-text">Jennyra Lisamara</h2>
+            <p style="line-height: 1.6;">
+                Mi vida, estos <b>365 días han sido lo mejor de mi existencia</b>. 
+                A pesar de los altos y bajos, de los errores y los aciertos, 
+                siempre hemos sabido ser el mejor equipo. <br><br>
+                Gracias por ser mi refugio y mi mayor alegría. 
+                ¡Te amo infinitamente!
+            </p>
+            <div class="heart-animation">❤️</div>
+        </div>
+    </div>
+
+    <div id="pikachu-popup" class="pika-overlay pika-hide">
+        <div class="pika-card">
+            <span class="pika-char">⚡ ¡Pika-Pika Te Amo! ⚡</span>
+            <span class="pika-heart">💝</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
