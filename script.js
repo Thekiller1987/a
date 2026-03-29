@@ -14,12 +14,13 @@ function updateClock() {
 }
 
 // 2. Texto de escritura automática
-const anniversaryText = `Mi niña hermosa, estos 365 días han sido lo mejor de mi vida. 
-Hemos reído, hemos crecido y, sobre todo, hemos aprendido que nuestro amor puede con todo. 
-A través de los altos y bajos, siempre has sido mi luz. 
+const anniversaryText = `Mi niña hermosa, hoy es un día increíblemente especial. Ha pasado un año entero a tu lado, un año lleno de sonrisas, de sueños compartidos, de abrazos que reinician mi alma y de momentos que jamás olvidaré. 
 
-Hoy celebramos nuestro primer año y te prometo que es solo el inicio de nuestra gran aventura. 
-Eres mi Pokemona favorita y mi razón de ser. ¡Te amo Jennyra! ❤️`;
+Me pediste el mejor regalo, y aunque ninguna palabra ni detalle físico puede abarcar lo mucho que significas para mí, he querido que sepas que eres mi vida entera. Eres mi refugio seguro, mi tranquilidad en medio del caos, la persona con la que quiero despertar todos los días.
+
+Este Pikachu con el corazón gigante que te acabo de regalar representa cómo me siento: pequeño ante lo inmenso del universo, pero abrazando el amor más enorme y puro que podría existir, que es el nuestro.
+
+A veces no encuentro las palabras exactas, pero quiero que este testamento te recuerde siempre que te amo con locura. Feliz aniversario amor mío. Que este sea el primero de muchísimos, hasta que seamos viejitos juntitos. ¡Te elijo hoy y siempre! ❤️`;
 
 let i = 0;
 function typing() {
@@ -66,3 +67,21 @@ window.onload = () => {
     typing();
     createParticles();
 };
+
+function startExperience() {
+    const enterScreen = document.getElementById('enter-screen');
+    // Si queremos intentar que el iframe suene si o si, a veces funciona recargar el src añadiendo autoplay, 
+    // pero con la interaccion del usuario ya deberia bastar si le pasamos mensaje a la API.
+    // Usaremos un truco simple:
+    const iframe = document.getElementById('music-player');
+    
+    // Al tocar el boton, el DOM ya registra interaccion del usuario para el autoplay
+    enterScreen.style.opacity = '0';
+    
+    // Try posting message to iframe to play if stopped
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+
+    setTimeout(() => {
+        enterScreen.style.display = 'none';
+    }, 1500);
+}

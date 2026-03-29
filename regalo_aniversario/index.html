@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Gran Amor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #0b0c10;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Starry Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, #1b0021 0%, #000000 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #fff, 0 0 20px #ff6b81; }
+        }
+
+        /* Floating Hearts Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            bottom: -100px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 50, 100, 0.4);
+            transform: rotate(45deg);
+            animation: floatUp linear infinite;
+        }
+
+        .heart-float::before, .heart-float::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 50, 100, 0.4);
+            border-radius: 50%;
+        }
+
+        .heart-float::before { top: -15px; left: 0; }
+        .heart-float::after { top: 0; left: -15px; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(45deg) scale(0.5); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(405deg) scale(1.5); opacity: 0; }
+        }
+
+        /* Enter Screen */
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            transition: opacity 1.5s ease-out;
+        }
+
+        #enter-screen h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff6b81;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px rgba(255, 107, 129, 0.6);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .enter-btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #ff6b81;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 107, 129, 0.4);
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 107, 129, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .enter-btn:hover::before { left: 0; }
+        .enter-btn:hover {
+            background: rgba(255, 107, 129, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 107, 129, 0.8);
+        }
+
+        /* Main Content */
+        #main-content {
+            position: relative;
+            z-index: 10;
+            display: none;
+            opacity: 0;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 20px;
+            min-height: 100vh;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .title-romantic {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5vw;
+            color: #ffb6c1;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 10px rgba(255, 182, 193, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @media (min-width: 1000px) {
+            .title-romantic { font-size: 5rem; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff6b81; }
+            to { text-shadow: 0 0 20px #ffb6c1, 0 0 30px #ffb6c1, 0 0 40px #ff6b81; }
+        }
+
+        .pikachu-container {
+            margin: 2rem 0;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 235, 59, 0.5));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pikachu-img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .testament {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            line-height: 1.8;
+            font-size: 1.2rem;
+            text-align: justify;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 107, 129, 0.3);
+            border-bottom: 1px solid rgba(255, 107, 129, 0.3);
+        }
+
+        .testament::before {
+            content: '❤';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: rgba(255, 107, 129, 0.2);
+        }
+
+        .testament::after {
+            content: '❤';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 107, 129, 0.2);
+        }
+
+        .testament p {
+            margin-bottom: 1.5rem;
+            color: #f1f2f6;
+        }
+
+        .highlight {
+            color: #ff6b81;
+            font-weight: 500;
+            font-size: 1.3rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ffb6c1;
+        }
+
+        /* YouTube Music Integration (Hidden) */
+        #music-container {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        /* Pulse animation for heart */
+        .pulse-heart {
+            color: #ff4757;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="stars"></div>
+    <div class="hearts-bg" id="hearts-bg"></div>
+
+    <div id="enter-screen">
+        <h1>Para el amor de mi vida...</h1>
+        <button class="enter-btn" onclick="startExperience()">Toca aquí para abrir tu regalo</button>
+    </div>
+
+    <!-- Hidden audio element for YouTube video -->
+    <div id="music-container">
+        <!-- Will be injected by JS to ensure interaction works -->
+    </div>
+
+    <div id="main-content">
+        <h1 class="title-romantic">Feliz Aniversario mi amor <span class="pulse-heart">❤</span></h1>
+        
+        <div class="pikachu-container">
+            <!-- This image is dynamically requested, Pikachu with a big heart! -->
+            <img src="img.png" alt="Pikachu Te Ama" class="pikachu-img" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'">
+        </div>
+
+        <div class="testament">
+            <p>Hola mi vida hermosa, hoy es un día increíblemente especial. Ha pasado <span class="highlight">un año</span> entero a tu lado, un año lleno de sonrisas, de sueños compartidos, de abrazos que reinician mi alma y de momentos que jamás olvidaré. Me pediste el mejor regalo, y aunque ninguna palabra ni detalle físico puede abarcar lo mucho que significas para mí, he querido crear este rincón en el mundo digital solo para ti y para nosotros.</p>
+            
+            <p>Eres y siempre serás <span class="highlight">mi vida entera</span>. Desde el momento en que llegaste a mí, mi mundo se llenó de colores que no sabía que existían. Eres mi refugio seguro, mi tranquilidad en medio del caos, la persona con la que quiero despertar todos los días de mi existencia. Este Pikachu con el corazón gigante representa cómo me siento: pequeño ante lo inmenso del universo, pero abrazando el amor más enorme y puro que podría existir, que es el nuestro.</p>
+            
+            <p>A veces no encuentro las palabras exactas, pero quiero que este pequeño testamento de amor te recuerde siempre que <span class="highlight">te amo con locura</span>. Te elijo hoy en nuestro aniversario, y te elegiré cada día de mi vida. Gracias por soportarme, por cuidarme, por ser la luz que me guía. Todo lo que hago cobra sentido si es para verte feliz, hermosa mía.</p>
+            
+            <p>Feliz aniversario amor mío. Que este sea solo el primero de muchísimos, hasta que seamos viejitos juntitos y sigamos agarrados de la mano. Que nuestro amor sea siempre tan fuerte e inquebrantable.</p>
+        </div>
+
+        <div class="footer">
+            Siempre tuyo, siempre juntos. Te amo infinitamente. <span class="pulse-heart">❤</span>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Generate hearts dynamically
+        const heartsContainer = document.getElementById('hearts-bg');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.style.left = `${Math.random() * 100}%`;
+            const duration = Math.random() * 10 + 10;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            // random size
+            const scale = Math.random() * 0.5 + 0.5;
+            heart.style.transform = `scale(${scale}) rotate(45deg)`;
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 800);
+        for(let i=0; i<10; i++) setTimeout(createHeart, i*300);
+
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('music-container', {
+                height: '0',
+                width: '0',
+                videoId: 'RkExprvlMlo', // The requested song
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'loop': 1,
+                    'playlist': 'RkExprvlMlo'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        let isPlayerReady = false;
+        function onPlayerReady(event) {
+            isPlayerReady = true;
+        }
+
+        function startExperience() {
+            const enterScreen = document.getElementById('enter-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Try to play YouTube video
+            if (isPlayerReady && player && player.playVideo) {
+                player.playVideo();
+                player.setVolume(100);
+            } else {
+                // If API isn't ready yet (slow connection), use a direct iframe as fallback
+                document.getElementById('music-container').innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/RkExprvlMlo?autoplay=1&loop=1&playlist=RkExprvlMlo" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
+            }
+
+            enterScreen.style.opacity = '0';
+            setTimeout(() => {
+                enterScreen.style.display = 'none';
+                mainContent.style.display = 'flex';
+                // Animate main content in
+                setTimeout(() => {
+                    mainContent.style.transition = 'opacity 2s ease-in';
+                    mainContent.style.opacity = '1';
+                }, 100);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

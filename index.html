@@ -8,6 +8,12 @@
 </head>
 <body>
 
+    <!-- Enter Screen -->
+    <div id="enter-screen">
+        <h1>Para el amor de mi vida...</h1>
+        <button class="enter-btn" onclick="startExperience()">Toca aquí para abrir tu regalo</button>
+    </div>
+
     <div id="particles-container"></div>
 
     <main class="main-content">
@@ -17,8 +23,8 @@
             <div id="clock" class="digital-clock">Iniciando contador...</div>
         </header>
 
-        <div class="video-wrapper">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FYVXc9MqyJs?autoplay=1&loop=1&playlist=FYVXc9MqyJs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="video-wrapper" style="opacity: 0.8; transition: opacity 0.3s; pointer-events: none;"> <!-- pointer-events none to prevent pause -->
+            <iframe id="music-player" width="100%" height="315" src="https://www.youtube.com/embed/RkExprvlMlo?autoplay=1&loop=1&playlist=RkExprvlMlo&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
         <section class="garden">
@@ -59,7 +65,8 @@
 
     <div id="pikachu-popup" class="pika-overlay pika-hide">
         <div class="pika-card">
-            <span class="pika-char">⚡ ¡Pika-Pika Te Amo! ⚡</span>
+            <span class="pika-char">⚡ ¡Te amo con locura! ⚡</span>
+            <img src="pikachu.png" class="custom-pikachu-img" alt="Pikachu Corazon">
             <span class="pika-heart">💝</span>
         </div>
     </div>

@@ -232,3 +232,44 @@ body {
 
 .pika-char { display: block; font-size: 1.8rem; color: #333; font-weight: 800; margin-bottom: 20px; }
 .pika-heart { font-size: 5rem; }
+
+/* Enter Screen Integrado */
+#enter-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background-color: #0f0c29;
+    z-index: 9999;
+    transition: opacity 1.5s ease-out;
+}
+
+#enter-screen h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem; color: var(--pink);
+    margin-bottom: 2rem; text-align: center;
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+}
+
+.enter-btn {
+    padding: 15px 40px; font-size: 1.5rem;
+    background: transparent; color: #fff;
+    border: 2px solid var(--pink); border-radius: 50px;
+    cursor: pointer; transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+}
+
+.enter-btn:hover {
+    background: rgba(255, 77, 109, 0.2);
+    transform: scale(1.05);
+}
+
+.custom-pikachu-img {
+    max-width: 250px;
+    width: 100%;
+    margin: 10px auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 234, 0, 0.6);
+}
