@@ -14,13 +14,18 @@ function updateClock() {
 }
 
 // 2. Texto de escritura automática
+// 2. Texto de escritura automática
 const anniversaryText = `Mi niña hermosa, hoy es un día increíblemente especial. Ha pasado un año entero a tu lado, un año lleno de sonrisas, de sueños compartidos, de abrazos que reinician mi alma y de momentos que jamás olvidaré. 
 
-Me pediste el mejor regalo, y aunque ninguna palabra ni detalle físico puede abarcar lo mucho que significas para mí, he querido que sepas que eres mi vida entera. Eres mi refugio seguro, mi tranquilidad en medio del caos, la persona con la que quiero despertar todos los días.
+Me pediste el mejor regalo, y aunque ninguna palabra ni detalle físico puede abarcar lo mucho que significas para mí, he querido crear este rincón en el mundo digital solo para ti y para nosotros.
 
-Este Pikachu con el corazón gigante que te acabo de regalar representa cómo me siento: pequeño ante lo inmenso del universo, pero abrazando el amor más enorme y puro que podría existir, que es el nuestro.
+Eres y siempre serás mi vida entera. Desde el momento en que llegaste a mí, mi mundo se llenó de colores que no sabía que existían. Eres mi refugio seguro, mi tranquilidad en medio del caos, la persona con la que quiero despertar todos los días de mi existencia. 
 
-A veces no encuentro las palabras exactas, pero quiero que este testamento te recuerde siempre que te amo con locura. Feliz aniversario amor mío. Que este sea el primero de muchísimos, hasta que seamos viejitos juntitos. ¡Te elijo hoy y siempre! ❤️`;
+Este Pikachu con el corazón gigante representa cómo me siento: pequeño ante lo inmenso del universo, pero abrazando el amor más enorme y puro que podría existir, que es el nuestro. Eres mi sol en los días nublados y la estrella que más brilla en mis noches. Prometo cuidarte, respetarte y hacerte sonreír cada día.
+
+A veces no encuentro las palabras exactas, pero quiero que este pequeño mensaje de amor te recuerde siempre que te amo con locura. Te elijo hoy en nuestro aniversario, y te elegiré cada día de mi vida. Gracias por soportarme, por cuidarme, por ser la luz que me guía. Todo lo que hago cobra sentido si es para verte feliz, hermosa mía.
+
+Feliz aniversario amor mío. Que este sea solo el primero de muchísimos, hasta que seamos viejitos juntitos y sigamos agarrados de la mano. Que nuestro amor sea siempre tan fuerte e inquebrantable. ❤️`;
 
 let i = 0;
 function typing() {
@@ -44,7 +49,10 @@ document.getElementById('pika-trigger').addEventListener('click', () => {
 });
 
 // 4. Modales
-function openModal() { document.getElementById('custom-modal').style.display = 'flex'; }
+function openModal() { 
+    document.getElementById('custom-modal').style.display = 'flex'; 
+    createExplosion();
+}
 function closeModal() { document.getElementById('custom-modal').style.display = 'none'; }
 
 // 5. Partículas
@@ -62,24 +70,79 @@ function createParticles() {
     }
 }
 
+// 6. Fondo animado estrellado e corazones
+function createBackgroundAnimations() {
+    const starsContainer = document.getElementById('stars');
+    if (starsContainer) {
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+    }
+
+    const heartsContainer = document.getElementById('hearts-bg');
+    if (heartsContainer) {
+        function createHeartBg() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.style.left = `${Math.random() * 100}%`;
+            const duration = Math.random() * 10 + 10;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            const scale = Math.random() * 0.5 + 0.5;
+            heart.style.transform = `scale(${scale}) rotate(45deg)`;
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        setInterval(createHeartBg, 800);
+        for(let i=0; i<10; i++) setTimeout(createHeartBg, i*300);
+    }
+}
+
+// 7. Explosión de amor
+function createExplosion() {
+    for(let i=0; i<40; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '💖';
+        heart.classList.add('explosion-heart');
+        heart.style.left = '50%';
+        heart.style.top = '50%';
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 150 + Math.random() * 250;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        heart.style.setProperty('--tx', `${tx}px`);
+        heart.style.setProperty('--ty', `${ty}px`);
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+    }
+}
+
 window.onload = () => {
     setInterval(updateClock, 1000);
     typing();
     createParticles();
+    createBackgroundAnimations();
 };
 
 function startExperience() {
     const enterScreen = document.getElementById('enter-screen');
-    // Si queremos intentar que el iframe suene si o si, a veces funciona recargar el src añadiendo autoplay, 
-    // pero con la interaccion del usuario ya deberia bastar si le pasamos mensaje a la API.
-    // Usaremos un truco simple:
-    const iframe = document.getElementById('music-player');
+    const audio = document.getElementById('bg-music');
     
-    // Al tocar el boton, el DOM ya registra interaccion del usuario para el autoplay
     enterScreen.style.opacity = '0';
     
-    // Try posting message to iframe to play if stopped
-    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    if (audio) {
+        audio.play().catch(e => console.log("Audio autoplay prevented", e));
+        audio.volume = 0.5;
+    }
 
     setTimeout(() => {
         enterScreen.style.display = 'none';
